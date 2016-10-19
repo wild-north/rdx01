@@ -5,7 +5,6 @@ import Item from '../components/Item';
 export default class List extends Component {
   render() {
     const {changeItem, todos} = this.props;
-    console.log('changeItem', changeItem);
 
     const elements = todos.map((item, index) => {
       return <Item key={index} text={item.text} changeItem={changeItem} isChecked={item.isChecked}/>;
