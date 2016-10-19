@@ -1,0 +1,58 @@
+{
+  "name": "egghead_redux",
+  "version": "0.0.1",
+  "description": "Learn Redux",
+  "main": "index.js",
+  "scripts": {
+    "env-install": "npm i webpack webpack-dev-middleware webpack-hot-middleware express babel-core babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-0 babel-plugin-transform-runtime babel-cli react-hot-loader --save-dev && npm install babel-polyfill babel-runtime react react-dom --save",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wild-north/egghead_redux.git"
+  },
+  "author": "Set",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wild-north/egghead_redux/issues"
+  },
+  "homepage": "https://github.com/wild-north/egghead_redux#readme",
+  "devDependencies": {
+    "autoprefixer": "6.5.1",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "0.25.0",
+    "eslint": "^3.7.1",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-react": "^6.4.1",
+    "express": "^4.14.0",
+    "npm-install-webpack-plugin": "^4.0.4",
+    "postcss-loader": "1.0.0",
+    "precss": "1.4.0",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "style-loader": "0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "classnames": "2.2.5",
+    "font-awesome": "4.6.3",
+    "lodash": "4.16.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-fontawesome": "1.2.0",
+    "react-redux": "4.4.5",
+    "redux": "3.6.0",
+    "redux-logger": "2.7.0",
+    "redux-thunk": "2.1.0"
+  }
+}

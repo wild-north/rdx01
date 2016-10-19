@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#todo-wrapper {
+    width: 800px;
+    padding:10px;
+    border:1px solid #959595;
+    border-radius: 4px;
+}
+
+#todo-wrapper .list {
+    list-style: none;
+    margin-bottom: 10px;
+}
+#todo-wrapper .list-item {
+    border:1px solid #ddd;
+    cursor: pointer;
+}
+#todo-wrapper .list-item:hover {
+    -webkit-box-shadow: inset 1px 0px 7px rgb(166, 163, 164, 1);
+    -moz-box-shadow: inset 1px 1px 7px rgba(166, 163, 164, 1);
+    box-shadow: inset 1px 1px 7px rgba(166, 163, 164, 1);
+}
+#todo-wrapper .list-item:hover .text {
+    text-decoration: underline;
+}
+
+#todo-wrapper .list-item .text,
+#todo-wrapper .list-item .check {
+    display: inline-block;
+    cursor: pointer;
+}
+#todo-wrapper .list-item .check input[type=checkbox]{
+    cursor: pointer;
+}
+#todo-wrapper .list-item .text {
+    width:85%;
+    padding:10px;
+}
+#todo-wrapper .list-item .check {
+    width:8%;
+    text-align: center;
+}
+#todo-wrapper .edit textarea {
+    display: inline-block;
+    width:90%;
+    height:100px;
+    padding: 5px;
+    resize: none;
+}
+#todo-wrapper .edit .save{
+    display: inline-block;
+    width:8%;
+    height:112px;
+    float: right;
+}
