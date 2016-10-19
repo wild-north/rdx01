@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import page from './page'
-import user from './user'
+import item from './item'
+import edit from './edit'
 
 export default combineReducers({
-    page,
-    user
+    item,
+    edit
 })

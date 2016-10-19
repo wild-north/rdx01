@@ -7,6 +7,7 @@
     padding:10px;
     border:1px solid #959595;
     border-radius: 4px;
+    margin: 30px auto;
 }
 
 #todo-wrapper .list {
@@ -32,16 +33,27 @@
     display: inline-block;
     cursor: pointer;
 }
-#todo-wrapper .list-item .check input[type=checkbox]{
-    cursor: pointer;
+#todo-wrapper .list-item .check{
+
 }
 #todo-wrapper .list-item .text {
     width:85%;
     padding:10px;
 }
 #todo-wrapper .list-item .check {
-    width:8%;
+    width: 15px;
+    height: 15px;
+    line-height:15px;
+    border: 1px solid #fff;
+    border-radius: 50%;
     text-align: center;
+    background-color: #41ff7f;
+}
+#todo-wrapper .list-item.done .text {
+    text-decoration: line-through;
+}
+#todo-wrapper .list-item.done .check {
+    background-color: #ff5854;
 }
 #todo-wrapper .edit textarea {
     display: inline-block;

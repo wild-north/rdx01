@@ -4,15 +4,13 @@ import classNames from 'classnames';
 export default class Item extends Component {
 
   render() {
-    const { text, checkItem, isChecked } = this.props;
+    const { text, changeItem, isChecked } = this.props;
 
     return (
-      <li className={classNames('list-item', {'checked': isChecked })} onClick={checkItem}>
+      <li className={classNames('list-item', {'done': isChecked })} onClick={changeItem}>
         <label>
           <div className="text">{text}</div>
-          <div className="check">
-            <input type="checkbox"/>
-          </div>
+          <div className="check">&nbsp;</div>
         </label>
       </li>
     );
@@ -21,6 +19,6 @@ export default class Item extends Component {
 
 Item.propTypes = {
     text: PropTypes.string.isRequired,
-    checkItem: PropTypes.func.isRequired,
+    changeItem: PropTypes.func.isRequired,
     isChecked: PropTypes.bool.isRequired
 };

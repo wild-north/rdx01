@@ -8,16 +8,13 @@ import Edit from '../components/Edit';
 
 
 class App extends Component {
-  checkItem() {
-    console.log('checking item...');
-  }
-  render() {
-    const { user, page } = this.props;
-    const { setChecked } = this.props.pageActions;
 
+  render() {
+    const {changeItem} = this.props.pageActions;
     return (
       <div id="todo-wrapper">
-        <List checkItem={::this.checkItem}/>
+        <h1>Todo List</h1>
+        <List todos={this.props.todos} changeItem={changeItem}/>
         <Edit />
       </div>
     )
@@ -26,7 +23,7 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    items: state.items
+    todos: state.item.todos
   }
 }
 function mapDispatchToProps(dispatch) {
