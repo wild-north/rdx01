@@ -1,7 +1,7 @@
 import {
   GET_PHOTOS_REQUEST,
   GET_PHOTOS_SUCCESS
-} from '../constants/Page'
+} from '../constants/item'
 
 const initialState = {
   years: [2016, 2015],

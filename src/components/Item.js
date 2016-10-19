@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
 
-export default class ListItem extends Component {
+export default class Item extends Component {
 
   render() {
     const { text, checkItem, isChecked } = this.props;
@@ -9,9 +9,9 @@ export default class ListItem extends Component {
     return (
       <li className={classNames('list-item', {'checked': isChecked })} onClick={checkItem}>
         <label>
-          <div class="text">{text}</div>
-          <div class="check">
-            <input type="checkbox">
+          <div className="text">{text}</div>
+          <div className="check">
+            <input type="checkbox"/>
           </div>
         </label>
       </li>
@@ -19,7 +19,7 @@ export default class ListItem extends Component {
   }
 }
 
-ListItem.propTypes = {
+Item.propTypes = {
     text: PropTypes.string.isRequired,
     checkItem: PropTypes.func.isRequired,
     isChecked: PropTypes.bool.isRequired

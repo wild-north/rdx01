@@ -1,39 +1,24 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ListItem from '../components/ListItem';
 import * as pageActions from '../actions/PageActions'
 
+import List from '../components/List';
+import Edit from '../components/Edit';
+
+
 class App extends Component {
+  checkItem() {
+    console.log('checking item...');
+  }
   render() {
     const { user, page } = this.props;
-    const { getPhotos } = this.props.pageActions;
+    const { setChecked } = this.props.pageActions;
 
     return (
       <div id="todo-wrapper">
-        <ul class="list">
-          <ListItem text={text} checkItem={checkItem}/>
-          <li class="list-item">
-            <label for="checked-02">
-              <div class="text">do nothing</div>
-              <div class="check">
-                <input type="checkbox" id="checked-02">
-              </div>
-            </label>
-          </li>
-          <li class="list-item">
-            <label for="checked-03">
-              <div class="text">learn rudux</div>
-              <div class="check">
-                <input type="checkbox" id="checked-03">
-              </div>
-            </label>
-          </li>
-        </ul>
-        <div class="edit">
-          <textarea></textarea>
-          <button class="save">Save</button>
-        </div>
+        <List checkItem={::this.checkItem}/>
+        <Edit />
       </div>
     )
   }
@@ -41,8 +26,7 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    user: state.user,
-    page: state.page
+    items: state.items
   }
 }
 function mapDispatchToProps(dispatch) {
