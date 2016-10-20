@@ -19,6 +19,7 @@ export default function item(state = initialState, action) {
   switch (action.type) {
     case CHECK_ITEM:
       // return {...state, todos: action.payload};
+      console.log(state);
       let newState = Object.assign({}, state, { todos: updateTodos(action.payload, state.todos) } );
       console.log(newState);
       return newState;
@@ -33,6 +34,6 @@ function updateTodos({ todoId }, todos) {
     if (todo.id === todoId) {
       todo.isChecked = !todo.isChecked
     }
-    return todo;
+    return todo;5
   });
 }

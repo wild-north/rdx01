@@ -59,6 +59,7 @@
 }
 #todo-wrapper .list-item.done .text {
     text-decoration: line-through;
+    color: #ff5854;
 }
 #todo-wrapper .list-item.done .check {
     background-color: #ff5854;
