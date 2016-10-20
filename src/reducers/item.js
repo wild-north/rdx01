@@ -3,6 +3,7 @@ import {
 } from '../constants/item'
 
 const initialState = {
+  test: 'test',
   todos: [
     {id: 0, text: 'lorem',  isChecked: false},
     {id: 1, text: 'ipsum',  isChecked: false},
@@ -12,13 +13,26 @@ const initialState = {
   ]
 };
 
-export default function page(state = initialState, action) {
+export default function item(state = initialState, action) {
+  // console.log('action ->', action);
+  // console.log('state ->', state);
   switch (action.type) {
     case CHECK_ITEM:
-      return {...state, todos: action.payload};
-
+      // return {...state, todos: action.payload};
+      let newState = Object.assign({}, state, { todos: updateTodos(action.payload, state.todos) } );
+      console.log(newState);
+      return newState;
 
     default:
       return state;
   }
+}
+
+function updateTodos({ todoId }, todos) {
+  return todos.map(todo => {
+    if (todo.id === todoId) {
+      todo.isChecked = !todo.isChecked
+    }
+    return todo;
+  });
 }

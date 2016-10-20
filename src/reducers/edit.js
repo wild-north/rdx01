@@ -4,4 +4,4 @@ const initialState = {
 
 export default function edit(state = initialState) {
   return state
-}
+};

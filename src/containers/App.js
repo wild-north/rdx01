@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as pageActions from '../actions/PageActions'
+import { changeItem } from '../actions/ItemActions'
+import { getValue } from '../helpers/connector'
 
 import List from '../components/List';
 import Edit from '../components/Edit';
@@ -10,7 +11,7 @@ import Edit from '../components/Edit';
 class App extends Component {
 
   render() {
-    const {changeItem} = this.props.pageActions;
+    const {changeItem} = this.props;
     return (
       <div id="todo-wrapper">
         <h1>Todo List</h1>
@@ -32,4 +33,8 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, {
+  changeItem
+})(App);
