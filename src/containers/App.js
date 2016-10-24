@@ -7,7 +7,7 @@ import List from '../components/List';
 import Edit from '../components/Edit';
 import Deleted from '../components/Deleted';
 
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 // import { changeItem } from '../actions/ItemActions'
 
 
@@ -32,20 +32,15 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        todos: state.item.todos,
-        deleted: state.item.deleted,
-        content: state.edit.content
-    }
-}
-export default connect(mapStateToProps, actions)(App);
+const mapStateToProps = (state) => ({
+    todos:      state.item.todos,
+    deleted:    state.item.deleted,
+    content:    state.edit.content
+});
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     pageActions: bindActionCreators(pageActions, dispatch)
-//   }
-// }
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 
