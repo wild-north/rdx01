@@ -1,7 +1,15 @@
+import {ADD_ITEM, CHANGE_TEXT} from '../constants/edit';
+
 const initialState = {
-  data: 'Это дефолтный стейт редюсера Edit'
+    content: ''
 };
 
-export default function edit(state = initialState) {
-  return state
+export default function edit(state = initialState, action) {
+    switch (action.type) {
+        case CHANGE_TEXT:
+            return {...state, content: action.payload};
+            break;
+        default:
+            return state;
+    }
 };

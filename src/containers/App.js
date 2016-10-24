@@ -1,33 +1,46 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-// import { changeItem } from '../actions/ItemActions'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import * as actions from '../actions/ItemActions'
-import { getValue } from '../helpers/connector'
+import {getValue} from '../helpers/connector'
 
 import List from '../components/List';
 import Edit from '../components/Edit';
+import Deleted from '../components/Deleted';
+
+// import { bindActionCreators } from 'redux';
+// import { changeItem } from '../actions/ItemActions'
 
 
 class App extends Component {
 
-  render() {
-    const {changeItem} = this.props;
-    return (
-      <div id="todo-wrapper">
-        <h1>Todo List</h1>
-        <List todos={this.props.todos} changeItem={changeItem}/>
-        <Edit />
-      </div>
-    )
-  }
+    render() {
+        const {changeItem, changeContent, addItem, deleteItem, todos, deleted} = this.props;
+        return (
+            <div id="todo-wrapper">
+                <h1>Todo List</h1>
+                <List todos={todos}
+                      changeItem={changeItem}
+                      deleteItem={deleteItem}
+                />
+                <Edit content={this.props.content}
+                      changeContent={changeContent}
+                      addItem={addItem}
+                />
+                <Deleted items={deleted}/>
+            </div>
+        )
+    }
 }
 
-function mapStateToProps (state) {
-  return {
-    todos: state.item.todos
-  }
+function mapStateToProps(state) {
+    return {
+        todos: state.item.todos,
+        deleted: state.item.deleted,
+        content: state.edit.content
+    }
 }
+export default connect(mapStateToProps, actions)(App);
+
 // function mapDispatchToProps(dispatch) {
 //   return {
 //     pageActions: bindActionCreators(pageActions, dispatch)
@@ -39,5 +52,3 @@ function mapStateToProps (state) {
 // export default connect(mapStateToProps, {
 //   changeItem,
 // })(App);
-
-export default connect(mapStateToProps, actions)(App);

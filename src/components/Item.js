@@ -1,35 +1,44 @@
-import React, { PropTypes, Component } from 'react';
+import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
 
 export default class Item extends Component {
 
-  constructor() {
-    super();
-    this.change = this.change.bind(this);
-  }
-  change(e) {
-    let { todoId } = this.props;
-    return this.props.changeItem({ todoId });
-  }
+    constructor() {
+        super();
+        this.changeState = this.changeState.bind(this);
+        this.removeItem = this.removeItem.bind(this);
+    }
 
-  render() {
-    const { text, changeItem, isChecked, todoId:id} = this.props;
+    changeState() {
+        let { id } = this.props.item;
 
-    // (e) => changeItem(e, {id:id, isChecked: !isChecked, text: text})
-    return (
-      <li className={classNames('list-item', {'done': isChecked })}
-          onClick={this.change}>
-        <label>
-          <div className="text">{text}</div>
-          <div className="check">&nbsp;</div>
-        </label>
-      </li>
-    );
-  }
+        this.props.changeItem({id});
+    }
+    removeItem(e) {
+        e.stopPropagation();
+        let { id } = this.props.item;
+        let { index } = this.props;
+
+        // if (confirm())
+            this.props.deleteItem({id, index});
+    }
+
+    render() {
+        const { item } = this.props;
+
+        return (
+            <li className={classNames('list-item', {'done': item.isChecked})}
+                onClick={this.changeState}
+            >
+                <div className="text">{item.text}</div>
+                <div className="check">&nbsp;</div>
+                <button className="del" onClick={this.removeItem}>X</button>
+            </li>
+        );
+    }
 }
 
 Item.propTypes = {
-    text: PropTypes.string.isRequired,
-    changeItem: PropTypes.func.isRequired,
-    isChecked: PropTypes.bool.isRequired
+    item: PropTypes.object.isRequired,
+    changeItem: PropTypes.func.isRequired
 };

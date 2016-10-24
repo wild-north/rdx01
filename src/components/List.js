@@ -4,19 +4,26 @@ import Item from '../components/Item';
 
 export default class List extends Component {
 
-  render() {
-    console.log('List rendered');
-    const {changeItem, todos} = this.props;
+    render() {
+        const {changeItem, todos, deleteItem} = this.props;
 
-    const elements = todos.map((item, index) => {
-      return <Item key={index} todoId={item.id} text={item.text} changeItem={changeItem} isChecked={item.isChecked}/>;
-    });
+        const elements = todos.map((item, index) => {
+            return (
+                <Item key={index}
+                      index={index}
+                      item={item}
+                      changeItem={changeItem}
+                      deleteItem={deleteItem}
+                />
+            );
+        });
 
-    return <ul className="list">{elements}</ul>
-  }
+        return <ul className="list">{elements}</ul>
+    }
 }
 
 List.propTypes = {
-  todos: PropTypes.array.isRequired,
-  changeItem: PropTypes.func.isRequired
+    todos: PropTypes.array.isRequired,
+    changeItem: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired
 };

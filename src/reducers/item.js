@@ -1,39 +1,66 @@
-import {
-  CHECK_ITEM
-} from '../constants/item'
+import { CHECK_ITEM, DELETE_ITEM } from '../constants/item';
+import { ADD_ITEM } from '../constants/edit';
+// import Immutable from 'immutable';
 
 const initialState = {
-  test: 'test',
-  todos: [
-    {id: 0, text: 'lorem',  isChecked: false},
-    {id: 1, text: 'ipsum',  isChecked: false},
-    {id: 2, text: 'dolor',  isChecked: true},
-    {id: 3, text: 'sit',    isChecked: true},
-    {id: 4, text: 'amet',   isChecked: false}
-  ]
+    deleted: [],
+    todos: [
+        {id: 0, text: 'learn React',        isChecked: false},
+        {id: 1, text: 'learn Redux',        isChecked: false},
+        {id: 2, text: 'make TODO-APP',      isChecked: true},
+        {id: 3, text: 'learn ImmutableJS',  isChecked: false},
+        {id: 4, text: 'make TODO-APP store immutable',    isChecked: false},
+        {id: 5, text: 'learn Reselect',     isChecked: false},
+        {id: 6, text: 'view Ilia Klimov\'s webinar about Redux',     isChecked: false},
+        {id: 7, text: 'not to go grazy :3',     isChecked: false}
+    ]
 };
 
 export default function item(state = initialState, action) {
-  // console.log('action ->', action);
-  // console.log('state ->', state);
-  switch (action.type) {
-    case CHECK_ITEM:
-      // return {...state, todos: action.payload};
-      console.log(state);
-      let newState = Object.assign({}, state, { todos: updateTodos(action.payload, state.todos) } );
-      console.log(newState);
-      return newState;
+    switch (action.type) {
+        case CHECK_ITEM:
+            return Object.assign({}, state, {todos: updateTodos(action.payload, state.todos)});
+        case ADD_ITEM:
+            return {...state, todos: addTodo(action.payload, state.todos)};
+        case DELETE_ITEM:
+            return removeTodo(action.payload, state);
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 }
 
-function updateTodos({ todoId }, todos) {
-  return todos.map(todo => {
-    if (todo.id === todoId) {
-      todo.isChecked = !todo.isChecked
+function updateTodos({id}, todos) {
+    return todos.map(todo => {
+        if (todo.id === id) {
+            todo.isChecked = !todo.isChecked
+        }
+        return todo;
+    });
+}
+
+function addTodo(content, todos) {
+    let updatedTodos = todos.slice();
+
+    updatedTodos.push({
+        id: todos[todos.length - 1] ? todos[todos.length - 1].id + 1 : 0,
+        text: content,
+        isChecked: false
+    });
+
+    return updatedTodos;
+}
+function removeTodo({id, index}, state) {
+
+    let todos = state.todos.slice();
+    let deleted = state.deleted.slice();
+
+    if (todos[index].id === id) {
+        deleted = deleted.concat( todos.splice(index, 1) );
     }
-    return todo;5
-  });
+
+    return {
+        deleted,
+        todos
+    };
 }
