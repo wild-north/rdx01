@@ -8,7 +8,6 @@
     width: 600px;
     padding: 10px;
     border: 1px solid #959595;
-    border-radius: 4px;
     margin: 30px auto;
 }
 
@@ -60,10 +59,9 @@
     width: 15px;
     height: 15px;
     line-height: 15px;
-    border: 1px solid #41ff7f;
     border-radius: 50%;
     text-align: center;
-    background-color: #41ff7f;
+    background-color: #41FF80;
     margin-right: 10px;
 }
 #todo-wrapper .list-item .del {
@@ -71,7 +69,6 @@
     height: 30px;
     line-height: 11px;
     border: none;
-    border-radius: 2px;
     background-color: #363636;
     color: #fff;
     cursor: nw-resize;
@@ -80,14 +77,30 @@
     text-align: center;
 }
 
-#todo-wrapper .list-item.done .text {
+/* Failed */
+#todo-wrapper .list-item.task-failed .text {
     text-decoration: line-through;
     color: #ff5854;
 }
-
-#todo-wrapper .list-item.done .check {
+#todo-wrapper .list-item.task-failed .check {
     background-color: #ff5854;
-    border: 1px solid #ff5854;
+}
+
+/* Completed */
+#todo-wrapper .list-item.task-completed .text {
+    text-decoration: line-through;
+    color: #29ff5a;
+}
+#todo-wrapper .list-item.task-completed .check {
+    background-color: #29ff5a;
+}
+
+/* In progress */
+#todo-wrapper .list-item.task-in-progress .text {
+    color: #ffef4c;
+}
+#todo-wrapper .list-item.task-in-progress .check {
+    background-color: #ffef4c;
 }
 
 #todo-wrapper .edit textarea {

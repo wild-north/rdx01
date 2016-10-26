@@ -5,16 +5,16 @@ export default class Item extends Component {
 
     constructor() {
         super();
-        this.changeState = this.changeState.bind(this);
-        this.removeItem = this.removeItem.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.onRemove = this.onRemove.bind(this);
     }
 
-    changeState() {
+    onClick() {
         let { id } = this.props.item;
 
         this.props.changeItem({id});
     }
-    removeItem(e) {
+    onRemove(e) {
         e.stopPropagation();
         let { id } = this.props.item;
         let { index } = this.props;
@@ -24,15 +24,16 @@ export default class Item extends Component {
     }
 
     render() {
-        const { item } = this.props;
+        const { item, conditions } = this.props;
+        const conditionClass = conditions[item.condition].className;
 
         return (
-            <li className={classNames('list-item', {'done': item.isChecked})}
-                onClick={this.changeState}
+            <li className={'list-item' + (conditionClass ? ' ' + conditionClass : '')}
+                onClick={this.onClick}
             >
                 <div className="text">{item.text}</div>
                 <div className="check">&nbsp;</div>
-                <button className="del" onClick={this.removeItem}>X</button>
+                <button className="del" onClick={this.onRemove}>X</button>
             </li>
         );
     }

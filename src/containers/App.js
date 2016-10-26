@@ -8,17 +8,25 @@ import Edit from '../components/Edit';
 import Deleted from '../components/Deleted';
 
 import { bindActionCreators } from 'redux';
-// import { changeItem } from '../actions/ItemActions'
 
 
 class App extends Component {
 
     render() {
-        const {changeItem, changeContent, addItem, deleteItem, todos, deleted} = this.props;
+        const {
+            changeItem,
+            changeContent,
+            addItem,
+            deleteItem,
+            todos,
+            deleted,
+            conditions
+        } = this.props;
         return (
             <div id="todo-wrapper">
                 <h1>Todo List</h1>
                 <List todos={todos}
+                      conditions={conditions}
                       changeItem={changeItem}
                       deleteItem={deleteItem}
                 />
@@ -35,15 +43,10 @@ class App extends Component {
 const mapStateToProps = (state) => ({
     todos:      state.item.todos,
     deleted:    state.item.deleted,
-    content:    state.edit.content
+    conditions: state.item.conditions,
+    content:    state.edit.content,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// export default connect(mapStateToProps, {
-//   changeItem,
-// })(App);
