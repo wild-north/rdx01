@@ -28,7 +28,7 @@ export default class Item extends Component {
         const conditionClass = conditions[item.condition].className;
 
         return (
-            <li className={'list-item' + (conditionClass ? ' ' + conditionClass : '')}
+            <li className={classNames('list-item', {[conditionClass]: true})}
                 onClick={this.onClick}
             >
                 <div className="text">{item.text}</div>
