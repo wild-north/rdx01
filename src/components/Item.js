@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
+import Select from './Select';
 
 export default class Item extends Component {
 
@@ -12,34 +13,37 @@ export default class Item extends Component {
     onClick() {
         let { id } = this.props.item;
 
-        this.props.changeItem({id});
+        this.props.onClick({id});
     }
     onRemove(e) {
         e.stopPropagation();
         let { id } = this.props.item;
         let { index } = this.props;
 
-        // if (confirm())
-            this.props.deleteItem({id, index});
+        this.props.deleteItem({id, index});
     }
 
     render() {
         const { item, conditions } = this.props;
-        const conditionClass = conditions[item.condition].className;
-
+        // const conditionClass = conditions[item.condition].className;
+        const selectedCondition = conditions.find(({key}) => key === item.condition);
+        {/*onClick={this.onClick}*/}
         return (
-            <li className={classNames('list-item', {[conditionClass]: true})}
-                onClick={this.onClick}
+
+            <li className={classNames('list-item', {[selectedCondition.className]: true})}
             >
                 <div className="text">{item.text}</div>
-                <div className="check">&nbsp;</div>
-                <button className="del" onClick={this.onRemove}>X</button>
+                {/*<div className="check">&nbsp;</div>*/}
+                <div className="right">
+                    <Select options={conditions} selected={selectedCondition}></Select>
+                    <button className="del" onClick={this.onRemove}>X</button>
+                </div>
             </li>
         );
     }
 }
 
-Item.propTypes = {
-    item: PropTypes.object.isRequired,
-    changeItem: PropTypes.func.isRequired
-};
+// Item.propTypes = {
+//     item: PropTypes.object.isRequired,
+//     onClick: PropTypes.func.isRequired
+// };

@@ -1,16 +1,22 @@
-import { CHECK_ITEM, DELETE_ITEM, IN_PROGRESS, COMPLETED, TODO, FAILED} from '../constants/item';
+import { CHANGE_ITEM, DELETE_ITEM, IN_PROGRESS, COMPLETED, TODO, FAILED} from '../constants/item';
 import { ADD_ITEM } from '../constants/edit';
 // import Immutable from 'immutable';
 
 const conditionsOrder = [IN_PROGRESS, COMPLETED, TODO, FAILED];
 
 const initialState = {
-    conditions: {
-        [IN_PROGRESS]:  {id: 0,     className: "task-in-progress"},
-        [COMPLETED]:    {id: 1,     className: "task-completed"},
-        [FAILED]:       {id: 2,     className: "task-failed"},
-        [TODO]:         {id: 3,     className: null}
-    },
+    // conditions: {
+    //     [IN_PROGRESS]:  {id: 0, text: 'In Progress',        className: "task-in-progress"},
+    //     [COMPLETED]:    {id: 1, text: 'Completed',          className: "task-completed"},
+    //     [FAILED]:       {id: 2, text: 'Failed',             className: "task-failed"},
+    //     [TODO]:         {id: 3, text: 'Need to be done',    className: null}
+    // },
+    conditions: [
+        {id: 0, key: IN_PROGRESS,   text: 'In Progress',        className: "task-in-progress"},
+        {id: 1, key: COMPLETED,     text: 'Completed',          className: "task-completed"},
+        {id: 2, key: FAILED,        text: 'Failed',             className: "task-failed"},
+        {id: 3, key: TODO,          text: 'Need to be done',    className: null}
+    ],
     deleted: [],
     todos: [
         {id: 0, text: 'learn React',            condition: IN_PROGRESS  },
@@ -26,7 +32,7 @@ const initialState = {
 
 export default function item(state = initialState, action) {
     switch (action.type) {
-        case CHECK_ITEM:
+        case CHANGE_ITEM:
             return {...state, todos: updateTodos(action.payload, state.todos)};
         case ADD_ITEM:
             return {...state, todos: addTodo(action.payload, state.todos)};
@@ -39,15 +45,8 @@ export default function item(state = initialState, action) {
     }
 }
 
-function updateTodos({id}, todos) {
-    return todos.map(todo => {
-        if (todo.id === id) {
-            const currentIndex = conditionsOrder.indexOf(todo.condition);
-            const newIndex = currentIndex + 1 < conditionsOrder.length ? currentIndex + 1 : 0;
-            todo.condition = conditionsOrder[newIndex];
-        }
-        return todo;
-    });
+function updateTodos(changedItem, todos) {
+    return todos.map(todo => (todo.id === changedItem.id) ? changedItem : todo);
 }
 
 function addTodo(content, todos) {
