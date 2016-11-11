@@ -1,36 +1,35 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../actions/ItemActions'
-import {getValue} from '../helpers/connector'
 
 import List from '../components/List';
 import Edit from '../components/Edit';
 import Deleted from '../components/Deleted';
 
+import {connect} from 'react-redux';
+import * as actions from '../actions/ItemActions'
 import { bindActionCreators } from 'redux';
-
 
 class App extends Component {
 
     render() {
         const {
-            changeItem,
+            changeItemStatus,
             changeContent,
             addItem,
             deleteItem,
             todos,
             deleted,
-            conditions
+            conditions,
+            content
         } = this.props;
         return (
             <div id="todo-wrapper">
-                <h1>Todo List</h1>
+                {/*<h1>Todo List</h1>*/}
                 <List todos={todos}
                       conditions={conditions}
-                      changeItem={changeItem}
+                      changeItemStatus={changeItemStatus}
                       deleteItem={deleteItem}
                 />
-                <Edit content={this.props.content}
+                <Edit content={content}
                       changeContent={changeContent}
                       addItem={addItem}
                 />
@@ -44,7 +43,8 @@ const mapStateToProps = (state) => ({
     todos:      state.item.todos,
     deleted:    state.item.deleted,
     conditions: state.item.conditions,
-    content:    state.edit.content,
+
+    content:    state.edit.content
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);

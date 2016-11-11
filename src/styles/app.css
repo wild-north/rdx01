@@ -146,7 +146,7 @@
 }
 #todo-wrapper .deleted-items li {
     display: inline-block;
-    margin:10px 5px 0;
+    margin:10px 5px 0 0;
     padding: 5px;
     border: 1px solid #ddd;
 }

@@ -1,4 +1,4 @@
-import {CHANGE_TEXT} from '../constants/edit';
+import { CHANGE_TEXT } from '../constants/constants';
 
 const initialState = {
     content: ''

@@ -22,27 +22,30 @@ export default class Item extends Component {
 
         this.props.deleteItem({id, index});
     }
+    onSelect(e) {
+        e.stopPropagation();
+        console.log(e.target.value);
+    }
 
     render() {
         const { item, conditions } = this.props;
-        // const conditionClass = conditions[item.condition].className;
         const selectedCondition = conditions.find(({key}) => key === item.condition);
-        {/*onClick={this.onClick}*/}
+
         return (
 
             <li className={classNames('list-item', {[selectedCondition.className]: true})}
             >
                 <div className="text">{item.text}</div>
-                {/*<div className="check">&nbsp;</div>*/}
+
                 <div className="right">
-                    <Select options={conditions} selected={selectedCondition}></Select>
+                    <Select options={conditions} selected={selectedCondition} onSelect={this.onSelect}></Select>
                     <button className="del" onClick={this.onRemove}>X</button>
                 </div>
             </li>
         );
     }
 }
-
+//
 // Item.propTypes = {
 //     item: PropTypes.object.isRequired,
 //     onClick: PropTypes.func.isRequired

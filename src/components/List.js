@@ -5,7 +5,7 @@ import Item from '../components/Item';
 export default class List extends Component {
 
     render() {
-        const {changeItem, todos, deleteItem, conditions} = this.props;
+        const {changeItemStatus, todos, deleteItem, conditions} = this.props;
 
 
         return <ul className="list">{
@@ -15,7 +15,7 @@ export default class List extends Component {
                           index={index}
                           item={item}
                           conditions={conditions}
-                          onChange={changeItem}
+                          onChange={changeItemStatus}
                           deleteItem={deleteItem}
                     />
                 );
@@ -26,6 +26,6 @@ export default class List extends Component {
 
 List.propTypes = {
     todos: PropTypes.array.isRequired,
-    changeItem: PropTypes.func.isRequired,
+    changeItemStatus: PropTypes.func.isRequired,
     deleteItem: PropTypes.func.isRequired
 };

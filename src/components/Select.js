@@ -1,23 +1,14 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes } from 'react';
 
-export default class Select extends Component {
-    onChange(e) {
-        return e.target.value;
-    }
-    render() {
-        const { options, selected} = this.props;
-        return (
-            <select onChange={this.onChange}>
-                {options.map(({key, text}, index) => {
-                    return <option key={index}
-                                   value={key}
-                                   selected={key === selected.key}
-                            >{text}</option>;
-                })}
-            </select>
-        );
-    }
-}
+const Select = ({ options, selected, onSelect}) => {
+    return (
+        <select onChange={onSelect} defaultValue={selected.key}>
+            {options.map(({key, text}, index) => <option key={index} value={key}>{text}</option>)}
+        </select>
+    );
+};
+
+export default Select;
 
 Select.propTypes = {
     options: PropTypes.array.isRequired,
