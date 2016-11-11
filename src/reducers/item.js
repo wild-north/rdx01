@@ -58,14 +58,15 @@ function addTodo(content, todos) {
 
     return updatedTodos;
 }
-function removeTodo({id, index}, state) {
+function removeTodo({ id }, state) {
 
     let todos = state.todos.slice();
     let deleted = state.deleted.slice();
 
-    if (todos[index].id === id) {
-        deleted = deleted.concat( todos.splice(index, 1) );
-    }
+    todos.some((val, index) => {
+        if (val.id === id)
+            deleted = deleted.concat( todos.splice(index, 1) );
+    });
 
     return { deleted, todos };
 }

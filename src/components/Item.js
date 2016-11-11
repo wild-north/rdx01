@@ -1,50 +1,33 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Select from './Select';
 
-export default class Item extends Component {
+const Item = (props) => {
 
-    constructor() {
-        super();
-        this.onClick = this.onClick.bind(this);
-        this.onRemove = this.onRemove.bind(this);
-    }
+    const { item, conditions, deleteItem } = props;
+    const selectedCondition = conditions.find(({key}) => key === item.condition);
 
-    onClick() {
-        let { id } = this.props.item;
-
-        this.props.onClick({id});
-    }
-    onRemove(e) {
-        e.stopPropagation();
-        let { id } = this.props.item;
-        let { index } = this.props;
-
-        this.props.deleteItem({id, index});
-    }
-    onSelect(e) {
-        e.stopPropagation();
+    const onSelect = (e) => {
         console.log(e.target.value);
-    }
+    };
 
-    render() {
-        const { item, conditions } = this.props;
-        const selectedCondition = conditions.find(({key}) => key === item.condition);
+    const removeItem = (id) => () => {
+        deleteItem({ id });
+    };
 
-        return (
+    return (
 
-            <li className={classNames('list-item', {[selectedCondition.className]: true})}
-            >
-                <div className="text">{item.text}</div>
-
-                <div className="right">
-                    <Select options={conditions} selected={selectedCondition} onSelect={this.onSelect}></Select>
-                    <button className="del" onClick={this.onRemove}>[x]</button>
-                </div>
-            </li>
-        );
-    }
+        <li className={classNames('list-item', {[selectedCondition.className]: true})}>
+            <div className="text">{item.text}</div>
+            <div className="right">
+                <Select options={conditions} selected={selectedCondition} onSelect={onSelect}></Select>
+                <button className="del" onClick={removeItem(item.id)}>[x]</button>
+            </div>
+        </li>
+    );
 }
+
+export default Item;
 //
 // Item.propTypes = {
 //     item: PropTypes.object.isRequired,
