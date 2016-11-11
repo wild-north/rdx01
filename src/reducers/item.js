@@ -1,5 +1,5 @@
 import {
-    DELETE_ITEM, ADD_ITEM, CHANGE_TEXT, CHANGE_ITEM_STATUS
+    DELETE_ITEM, ADD_ITEM, CHANGE_ITEM_STATUS
 } from '../constants/actions';
 
 import {
