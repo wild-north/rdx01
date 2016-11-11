@@ -1,36 +1,40 @@
-import * as c from '../constants/constants';
+import {
+    DELETE_ITEM, ADD_ITEM, CHANGE_TEXT, CHANGE_ITEM_STATUS
+} from '../constants/actions';
 
-const conditionsOrder = [c.IN_PROGRESS, c.COMPLETED, c.TODO, c.FAILED];
+import {
+    IN_PROGRESS, COMPLETED, FAILED, TODO
+} from '../constants/statuses';
 
 const initialState = {
     conditions: [
-        {id: 0, key: c.IN_PROGRESS,   text: 'In Progress',        className: "task-in-progress"},
-        {id: 1, key: c.COMPLETED,     text: 'Completed',          className: "task-completed"},
-        {id: 2, key: c.FAILED,        text: 'Failed',             className: "task-failed"},
-        {id: 3, key: c.TODO,          text: 'Need to be done',    className: null}
+        {id: 0, key: IN_PROGRESS,   text: 'In Progress',        className: "task-in-progress"},
+        {id: 1, key: COMPLETED,     text: 'Completed',          className: "task-completed"},
+        {id: 2, key: FAILED,        text: 'Failed',             className: "task-failed"},
+        {id: 3, key: TODO,          text: 'Need to be done',    className: null}
     ],
     deleted: [],
     todos: [
-        {id: 0, text: 'learn React',            condition: c.IN_PROGRESS  },
-        {id: 1, text: 'learn Redux',            condition: c.IN_PROGRESS  },
-        {id: 2, text: 'make TODO-APP',          condition: c.IN_PROGRESS  },
-        {id: 3, text: 'learn ImmutableJS',      condition: c.TODO         },
-        {id: 4, text: 'make store immutable',   condition: c.TODO         },
-        {id: 5, text: 'learn Reselect',         condition: c.TODO         },
-        {id: 6, text: 'not to go grazy :3',     condition: c.FAILED       },
-        {id: 7, text: 'get some whisky',        condition: c.COMPLETED    }
+        {id: 0, text: 'learn React',            condition: IN_PROGRESS  },
+        {id: 1, text: 'learn Redux',            condition: IN_PROGRESS  },
+        {id: 2, text: 'make TODO-APP',          condition: IN_PROGRESS  },
+        {id: 3, text: 'learn ImmutableJS',      condition: TODO         },
+        {id: 4, text: 'make store immutable',   condition: TODO         },
+        {id: 5, text: 'learn Reselect',         condition: TODO         },
+        {id: 6, text: 'not to go grazy :3',     condition: FAILED       },
+        {id: 7, text: 'get some whisky',        condition: COMPLETED    }
     ]
 };
 
 export default function item(state = initialState, action) {
     switch (action.type) {
-        case c.CHANGE_ITEM_STATUS:
+        case CHANGE_ITEM_STATUS:
             return {...state, todos: updateTodos(action.payload, state.todos)};
 
-        case c.ADD_ITEM:
+        case ADD_ITEM:
             return {...state, todos: addTodo(action.payload, state.todos)};
 
-        case c.DELETE_ITEM:
+        case DELETE_ITEM:
             const {deleted, todos} = removeTodo(action.payload, state)
             return {...state, deleted, todos};
 

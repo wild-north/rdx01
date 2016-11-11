@@ -1,6 +1,6 @@
 'use strict';
 
-export const createAction = type => payload => ({type, payload});
+// export const createAction = type => payload => ({type, payload});
 
 /**
  *  Function `createAction` doing this:
@@ -12,3 +12,11 @@ export const createAction = type => payload => ({type, payload});
  *   }
  *
  */
+
+
+export function createAction(type) {
+    return function (payload) {
+        console.log({type, payload});
+        return {type, payload};
+    }
+}

@@ -39,7 +39,7 @@ export default class Item extends Component {
 
                 <div className="right">
                     <Select options={conditions} selected={selectedCondition} onSelect={this.onSelect}></Select>
-                    <button className="del" onClick={this.onRemove}>X</button>
+                    <button className="del" onClick={this.onRemove}>[x]</button>
                 </div>
             </li>
         );

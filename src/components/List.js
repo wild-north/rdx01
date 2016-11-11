@@ -1,31 +1,30 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import Item from '../components/Item';
 
 
-export default class List extends Component {
+const List = (props) => {
 
-    render() {
-        const {changeItemStatus, todos, deleteItem, conditions} = this.props;
+    const {changeItemStatus, todos, deleteItem, conditions} = props;
 
-
-        return <ul className="list">{
-            todos.map((item, index) => {
-                return (
-                    <Item key={index}
-                          index={index}
-                          item={item}
-                          conditions={conditions}
-                          onChange={changeItemStatus}
-                          deleteItem={deleteItem}
-                    />
-                );
-            })
-        }</ul>
-    }
-}
+    return <ul className="list">{
+        todos.map((item, index) => {
+            return (
+                <Item key={index}
+                      index={index}
+                      item={item}
+                      conditions={conditions}
+                      onChange={changeItemStatus}
+                      deleteItem={deleteItem}
+                />
+            );
+        })
+    }</ul>
+};
 
 List.propTypes = {
     todos: PropTypes.array.isRequired,
     changeItemStatus: PropTypes.func.isRequired,
     deleteItem: PropTypes.func.isRequired
 };
+
+export default List;

@@ -1,44 +1,25 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classNames  from 'classnames';
+import { getValue } from '../helpers/connector';
 
-export default class Edit extends Component {
-    constructor() {
-        super();
-        this.content = '';
-        this.changeContent = this.changeContent.bind(this);
-        this.saveContent = this.saveContent.bind(this);
-    }
+const Edit = ({addItem, changeContent, content}) => {
+    return (
+        <div className="edit">
+            <textarea
+                onChange={getValue(changeContent)}
+                value={content}
+            ></textarea>
+            <button
+                onClick={getValue(addItem)}
+                className={classNames('save', {'disabled': !content})}
+            >Save</button>
+        </div>
+    );
+};
 
-    changeContent(e) {
-        this.props.changeContent(e.target.value);
-    }
-
-    saveContent() {
-        this.props.addItem(this.props.content);
-    }
-
-    render() {
-        return (
-            <div className="edit">
-                <textarea
-                    onChange={this.changeContent}
-                    value={this.props.content}
-                >
-                </textarea>
-                <button
-                    onClick={this.saveContent}
-                    className={classNames(
-                        'save',
-                        {'disabled': !this.props.content}
-                    )}
-                >Save
-                </button>
-            </div>
-        )
-    }
-}
+export default Edit;
 
 Edit.propTypes = {
     content: PropTypes.string.isRequired,
-    // addItem: PropTypes.func.isRequired
+    addItem: PropTypes.func.isRequired
 };
